@@ -49,8 +49,8 @@ function love.load()
 	planeX = 0
 	planeY = 0.66
 
-	w = 640
-	h = 480
+	w = 512
+	h = 384
 	love.graphics.setMode(w, h, false, true, 0)
 	
 	
@@ -183,18 +183,18 @@ function love.update(dt)
 			end
 		end
 		if love.keyboard.isDown("d") then
-			if (map[math.floor(posX + planeX + 0.1 * moveSpeed)][math.floor(posY)] == 0) then
+			if (map[math.floor(posX + planeX * moveSpeed)][math.floor(posY)] == 0) then
 				posX = posX + planeX * strafeSpeed
 			end
-			if (map[math.floor(posX)][math.floor(posY + planeY + 0.1 * moveSpeed)] == 0) then
+			if (map[math.floor(posX)][math.floor(posY + planeY * moveSpeed)] == 0) then
 				posY = posY + planeY * strafeSpeed
 			end
 		end
 		if love.keyboard.isDown("a") then
-			if (map[math.floor(posX - planeX - 0.01 * moveSpeed)][math.floor(posY)] == 0) then
+			if (map[math.floor(posX - planeX * moveSpeed)][math.floor(posY)] == 0) then
 				posX = posX - planeX * strafeSpeed
 			end
-			if (map[math.floor(posX)][math.floor(posY - planeY - 0.01 * moveSpeed)] == 0) then
+			if (map[math.floor(posX)][math.floor(posY - planeY * moveSpeed)] == 0) then
 				posY = posY - planeY * strafeSpeed
 			end	
 		end
@@ -221,6 +221,13 @@ for x = 0, w, 1 do
 		love.graphics.setColor(drawScreenLineColor[x])
 		love.graphics.line(x, drawScreenLineStart[x], x, drawScreenLineEnd[x])
 	end
+love.graphics.setColor(255, 12, 12)	
+love.graphics.print("FPS: "..tostring(love.timer.getFPS( )), 10, 10, 0, 3)
+end
+
+function love.keypressed(key, unicode)
+     if key == " " then love.graphics.toggleFullscreen() end
+	 
 end
 
 
