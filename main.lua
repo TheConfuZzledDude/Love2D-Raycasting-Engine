@@ -51,7 +51,7 @@ function love.load()
 
 	w = 512
 	h = 384
-	love.graphics.setMode(w, h, false, true, 0)
+	love.window.setMode(w, h)
 	
 	
 	drawScreenLineStart = {}
